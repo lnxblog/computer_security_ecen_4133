@@ -1,0 +1,124 @@
+{
+  "tests": [
+    {
+      "name": "sql0",
+      "setup": "",
+      "run": "curl https://project2.ecen4133.org/sqlinject/0 -d `cat sql_0.txt` 2> /dev/null",
+      "input": "",
+      "output": "^<h1>Login successful!.*",
+      "comparison": "regex",
+      "timeout": 1,
+      "points": 15
+    },
+    {
+      "name": "sql1",
+      "setup": "",
+      "run": "curl https://project2.ecen4133.org/sqlinject/1 -d `cat sql_1.txt` 2> /dev/null",
+      "input": "",
+      "output": "^<h1>Login successful!.*",
+      "comparison": "regex",
+      "timeout": 1,
+      "points": 15
+    },
+    {
+      "name": "sql2",
+      "setup": "",
+      "run": "curl https://project2.ecen4133.org/sqlinject/2 -d `cat sql_2.txt` 2> /dev/null",
+      "input": "",
+      "output": "^<h1>Login successful!.*",
+      "comparison": "regex",
+      "timeout": 1,
+      "points": 20
+    },
+    {
+      "name": "csrf0",
+      "setup": "sudo -H pip3 install selenium; sudo -H pip3 install pyvirtualdisplay; chmod +x test/chromedriver",
+      "run": " python3 test/test-csrf.py csrf_0.html 0",
+      "input": "",
+      "output": "[(5, '')]",
+      "comparison": "included",
+      "timeout": 2,
+      "points": 25
+    },
+    {
+      "name": "csrf1",
+      "setup": "sudo -H pip3 install selenium; sudo -H pip3 install pyvirtualdisplay; chmod +x test/chromedriver",
+      "run": "python3 test/test-csrf.py csrf_1.html 1",
+      "input": "",
+      "output": "[(5, '')]",
+      "comparison": "included",
+      "timeout": 2,
+      "points": 25
+    },
+    {
+      "name": "xss0",
+      "setup": "sudo -H pip3 install selenium; sudo -H pip3 install pyvirtualdisplay; chmod +x test/chromedriver",
+      "run": "python3 test/test-xss.py xss_0.txt 1",
+      "input": "",
+      "output": "[(2, 'Correct')]",
+      "comparison": "included",
+      "timeout": 2,
+      "points": 10
+    },
+    {
+      "name": "xss1",
+      "setup": "sudo -H pip3 install selenium; sudo -H pip3 install pyvirtualdisplay; chmod +x test/chromedriver",
+      "run": "python3 test/test-xss.py xss_1.txt 2",
+      "input": "",
+      "output": "[(2, 'Correct')]\r\n",
+      "comparison": "included",
+      "timeout": 2,
+      "points": 10
+    },
+    {
+      "name": "xss2",
+      "setup": "sudo -H pip3 install selenium; sudo -H pip3 install pyvirtualdisplay; chmod +x test/chromedriver",
+      "run": "python3 test/test-xss.py xss_2.txt 3",
+      "input": "",
+      "output": "[(2, 'Correct')]",
+      "comparison": "included",
+      "timeout": 2,
+      "points": 10
+    },
+    {
+      "name": "xss3",
+      "setup": "sudo -H pip3 install selenium; sudo -H pip3 install pyvirtualdisplay; chmod +x test/chromedriver",
+      "run": "python3 test/test-xss.py xss_3.txt 4",
+      "input": "",
+      "output": "[(2, 'Correct')]",
+      "comparison": "included",
+      "timeout": 2,
+      "points": 10
+    },
+    {
+      "name": "xss_payload submitted",
+      "setup": "",
+      "run": "cat xss_payload.html > /dev/null; echo $?",
+      "input": "",
+      "output": "0",
+      "comparison": "exact",
+      "timeout": 1,
+      "points": 5
+    },
+    {
+      "name": "No Repeated XSS Attacks",
+      "setup": "",
+      "run": "cmp --silent xss_0.txt xss_1.txt; echo $?; cmp --silent xss_0.txt xss_2.txt; echo $?; cmp --silent xss_0.txt xss_3.txt; echo $?; cmp --silent xss_1.txt xss_2.txt; echo $?; cmp --silent xss_1.txt xss_3.txt; echo $?; cmp --silent xss_2.txt xss_3.txt; echo $?",
+      "input": "",
+      "output": "1\r\n1\r\n1\r\n1\r\n1\r\n1",
+      "comparison": "included",
+      "timeout": 1,
+      "points": 5
+    },
+    {
+      "name": "sha256-test-scripts",
+      "setup": "",
+      "run": "sha256sum test/test-csrf.py test/test-xss.py test/chromedriver",
+      "input": "",
+      "output": "b4938887c8a4aa6b74f5176ac8dd783a07d37862d1982de84ec214a0dfd9b129  test/test-csrf.py\r\n0076592644e9c84241b4a544636459fe184e4ad4a1902b637d0142e62a8a7fe7  test/test-xss.py\r\nec3cd5ed191a1ba3bb56f15803f92e7fbed39bf5a25253c36f83f7f4631340c7  test/chromedriver",
+      "comparison": "included",
+      "timeout": 1,
+      "points": 1
+    }
+  ]
+}

